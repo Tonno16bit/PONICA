@@ -1,0 +1,39 @@
+#include <SimpleDHT.h>
+
+int pinDHT11 = 7;
+SimpleDHT11 dht11(pinDHT11);
+
+void setup() {
+  // put your setup code here, to run once:
+  Serial.begin(9600);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  //VARIABILI
+  int v=analogRead(A0);
+  byte temperature = 0;
+  byte humidity = 0;
+  int err = SimpleDHTErrSuccess;
+
+
+
+  if ((err = dht11.read(&temperature, &humidity, NULL)) != SimpleDHTErrSuccess) {
+    Serial.print("Read DHT11 failed, err="); Serial.print(SimpleDHTErrCode(err));
+    Serial.print(","); Serial.println(SimpleDHTErrDuration(err)); delay(1000);
+    return;
+  }
+  v=map(v,0,2000,100,0);
+  
+  //TYPE CASTING
+  int t = (int)temperature;
+  int u = (int)humidity;
+  
+  
+  //OUTPUT VARIABILI
+  Serial.print((String)"luminosità: "+ v +"%    ");
+  Serial.print((String)"temperatura: "+ t +"°C    ");
+  Serial.println((String)"umidità: "+ u +"%    ");
+
+  delay(1500);
+}
