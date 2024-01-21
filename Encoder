@@ -1,0 +1,22 @@
+#include <Encoder.h>
+
+Encoder enc(2, 3);
+
+void setup() {
+  // put your setup code here, to run once:
+Serial.begin(9600);
+pinMode(4, INPUT_PULLUP);
+Serial.println("Basic Encoder Test - assoluto:");
+}
+ long oldpos = -1;
+void loop() {
+  long pos = enc.read();
+  if (pos != oldpos){
+    Serial.println(pos);
+    oldpos=pos;
+  }
+  if(!digitalRead(4)){
+    Serial.println("ok");
+  }
+  delay(150);
+}
