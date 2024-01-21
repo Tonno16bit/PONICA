@@ -1,7 +1,12 @@
 #include <Encoder.h>
 
 Encoder enc(2, 3);
-
+/* Questi sono i collegamenti da fare per l'encoder:
+  GND --> ground
+  +   --> positivo
+  SM  --> D4
+  DT  --> D2
+  CLK --> D3*/
 void setup() {
   // put your setup code here, to run once:
 Serial.begin(9600);
